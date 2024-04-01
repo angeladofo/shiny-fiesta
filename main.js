@@ -15,7 +15,7 @@ const dayFormat = new Intl.DateTimeFormat(undefined, { weekday: "short" }); //un
 const dayFormatLong = new Intl.DateTimeFormat(undefined, {weekday: "long"});
 const hourFormat = new Intl.DateTimeFormat(undefined, {hour : "numeric"})
 
-function getWeather(lat = 10, lon = 10, timezone) {
+function getWeather(lat = 38, lon = 77, timezone) {
   let currentTemp;
   let currWindSpeed;
   let currPrecip;
