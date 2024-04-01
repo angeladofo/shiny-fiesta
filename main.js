@@ -32,7 +32,7 @@ function getWeather(lat = 10, lon = 10, timezone) {
     } else {
       // User clicked "Cancel" or closed the alert, handle accordingly
       console.log("User denied location access.");
-      getData(weatherUrl);
+      getData(weather);
     }
   } else { 
     // Geolocation API is not supported by the browser
