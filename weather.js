@@ -1,9 +1,10 @@
 
-console.log("h")
+
 let weather =
   "https://api.open-meteo.com/v1/forecast?latitude=10&longitude=13.41&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York";
   console.log(weather)
-  const weatherUrl = new URL(weather);
+  let weatherUrl;
+  weatherUrl = new URL(weather);
 // .search: we want to update the longitude and latitude of the url above the easiest way to access it is with the .search property
 
 let generateImage;
@@ -28,12 +29,12 @@ export function getWeather(lat = 10, lon = 10, timezone) {
     } else {
       // User clicked "Cancel" or closed the alert, handle accordingly
       console.log("User denied location access.");
-      getData(weatherUrl);
+      getData(weather);
     }
   } else { 
     // Geolocation API is not supported by the browser
     console.error("Geolocation is not supported by this browser.");
-    getData(weatherUrl);
+    getData(weather);
   }
 
   // Function to get location

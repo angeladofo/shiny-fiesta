@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="main.js"></script>
+    <script type="text/javascript">
+      var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      if (isSafari) {
+          alert("Access blocked. Please use a different browser.");
+          window.location.href = "https://example.com/alternative-browser-page"; // Redirect to an alternative page
+      }
+  </script>
+    </script>
+    <script src="main.js" async></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
