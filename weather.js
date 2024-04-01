@@ -1,16 +1,13 @@
-
-
 let weather =
   "https://api.open-meteo.com/v1/forecast?latitude=10&longitude=13.41&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York";
-  console.log(weather)
-  let weatherUrl;
-  weatherUrl = new URL(weather);
+console.log(weather);
+const weatherUrl = new URL(weather);
 // .search: we want to update the longitude and latitude of the url above the easiest way to access it is with the .search property
 
 let generateImage;
 const dayFormat = new Intl.DateTimeFormat(undefined, { weekday: "short" }); //undefined just means your local timezone //long converts it into the weekday words //short is the same as long except instead of Friday you would get Fri
-const dayFormatLong = new Intl.DateTimeFormat(undefined, {weekday: "long"});
-const hourFormat = new Intl.DateTimeFormat(undefined, {hour : "numeric"})
+const dayFormatLong = new Intl.DateTimeFormat(undefined, { weekday: "long" });
+const hourFormat = new Intl.DateTimeFormat(undefined, { hour: "numeric" });
 
 export function getWeather(lat = 10, lon = 10, timezone) {
   let currentTemp;
@@ -18,7 +15,6 @@ export function getWeather(lat = 10, lon = 10, timezone) {
   let currPrecip;
   let iconCode;
   let currTime;
-  
 
   // Check if Geolocation API is supported
   if ("geolocation" in navigator) {
@@ -29,12 +25,12 @@ export function getWeather(lat = 10, lon = 10, timezone) {
     } else {
       // User clicked "Cancel" or closed the alert, handle accordingly
       console.log("User denied location access.");
-      getData(weather);
+      // getData(weather);
     }
-  } else { 
+  } else {
     // Geolocation API is not supported by the browser
     console.error("Geolocation is not supported by this browser.");
-    getData(weather);
+    // getData(weather);
   }
 
   // Function to get location
@@ -60,8 +56,8 @@ export function getWeather(lat = 10, lon = 10, timezone) {
     );
   }
 
-  function getData(weatherUrl) {
-    fetch(weatherUrl)
+  function getData(weatherURL) {
+    fetch(weatherURL)
       .then((file) => {
         if (!file.ok) {
           throw new Error("invalid response");
@@ -74,7 +70,7 @@ export function getWeather(lat = 10, lon = 10, timezone) {
         currentTemp = Math.round(data.current.temperature_2m);
         currWindSpeed = data.current.wind_speed_10m;
         currPrecip = data.current.precipitation;
-        console.log(data.current.weather_code)
+        console.log(data.current.weather_code);
         getIcon(data.current.weather_code);
 
         //getting important daily-weather data from API Sunday to Monday
@@ -89,7 +85,7 @@ export function getWeather(lat = 10, lon = 10, timezone) {
             fllowtemp: data.daily.apparent_temperature_min[index],
           };
         });
-        console.log(myDaily)
+        console.log(myDaily);
 
         //getting important hourly-weather data from API
         let myHourly = data.hourly.time
@@ -110,7 +106,7 @@ export function getWeather(lat = 10, lon = 10, timezone) {
               item.timestamp <= (currTime + 41500) * 1000
           ); //no use of {} for .filter
         //filters array to be from current-time to 12hrs away
-            console.log(myHourly)
+        console.log(myHourly);
         // Updating the UI
         renderData("current-temp", currentTemp);
         renderData("head-wind", currWindSpeed);
@@ -128,8 +124,8 @@ export function getWeather(lat = 10, lon = 10, timezone) {
 }
 //function for generating icon based on code
 function getIcon(code) {
-  if(code === 0) {
-    return (generateImage = "icons/sun.svg")
+  if (code === 0) {
+    return (generateImage = "icons/sun.svg");
   }
   if (code < 4 && code !== 0) {
     return (generateImage = "icons/cloud.svg");
@@ -179,20 +175,20 @@ function renderHourly(hourly) {
   let section = document.getElementById("table-section");
   let hourlyTemplate = document.getElementById("hourly-template");
   section.innerText = "";
-  console.log(hourly)
+  console.log(hourly);
 
   hourly.forEach((hour, index) => {
     //assign the cloned content of the <template> element to our variable
     const element = hourlyTemplate.content.cloneNode("true");
-    
-    
 
     // Set the childs data of the cloned template
     renderData("template-hourly-day", dayFormatLong.format(hour.timestamp), {
       parent: element,
     });
 
-    renderData("template-hour", hourFormat.format(hour.timestamp), { parent: element });
+    renderData("template-hour", hourFormat.format(hour.timestamp), {
+      parent: element,
+    });
     renderIcon("template-hourly-icon", getIcon(hour.weathercode), {
       parent: element,
     });
@@ -202,7 +198,7 @@ function renderHourly(hourly) {
     renderData("template-hourly-precip", hour.rain, { parent: element });
 
     //apend the template back on the UI
-    
+
     section.append(element);
   });
 }
