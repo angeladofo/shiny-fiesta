@@ -5,7 +5,7 @@ let weather =
 // .search: we want to update the longitude and latitude of the url above the easiest way to access it is with the .search property
 
 
-getWeather(10,10, Intl.DateTimeFormat().resolvedOptions().timeZone)
+getWeather(38,77, Intl.DateTimeFormat().resolvedOptions().timeZone)
 
 
 
