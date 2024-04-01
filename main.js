@@ -59,6 +59,7 @@ function getWeather(lat = 10, lon = 10, timezone) {
 
       function callError(error) {
         console.error("Error getting user's location:", error.message);
+        getData(weatherUrl)
       }
     );
   }
