@@ -4,10 +4,9 @@ getWeather(10,10, Intl.DateTimeFormat().resolvedOptions().timeZone)
 
 
 
-console.log("h")
+
 let weather =
   "https://api.open-meteo.com/v1/forecast?latitude=10&longitude=13.41&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York";
-  console.log(weather)
   const weatherUrl = new URL(weather);
 // .search: we want to update the longitude and latitude of the url above the easiest way to access it is with the .search property
 
@@ -78,7 +77,6 @@ function getWeather(lat = 10, lon = 10, timezone) {
         currentTemp = Math.round(data.current.temperature_2m);
         currWindSpeed = data.current.wind_speed_10m;
         currPrecip = data.current.precipitation;
-        console.log(data.current.weather_code)
         getIcon(data.current.weather_code);
 
         //getting important daily-weather data from API Sunday to Monday
@@ -114,7 +112,6 @@ function getWeather(lat = 10, lon = 10, timezone) {
               item.timestamp <= (currTime + 41500) * 1000
           ); //no use of {} for .filter
         //filters array to be from current-time to 12hrs away
-            console.log(myHourly)
         // Updating the UI
         renderData("current-temp", currentTemp);
         renderData("head-wind", currWindSpeed);
