@@ -14,6 +14,7 @@ export function getWeather(lat = 10, lon = 10, timezone) {
   let currPrecip;
   let iconCode;
   let currTime;
+  getData(weatherUrl)
 
   // Check if Geolocation API is supported
   if ("geolocation" in navigator) {
