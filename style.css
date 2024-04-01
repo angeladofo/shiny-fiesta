@@ -1,0 +1,218 @@
+/* CUSTOM PROPERTIES */
+
+:root {
+
+    /* colors */
+    --word-color:200 97% 9%;
+    --icon-color: 200 97% 9%;
+    --background-color: 200 100% 32%; /* stands for hsl make sure there is NO commas */
+    --daily-report-color: 200 100% 32%;
+    --card-color: 225 100% 100;
+    --hourly-primary-color:200, 100%, 23%;
+    --hourly-other-color: 200 100% 15%;
+
+    /* font-sizes */
+    --fs-900: 9.375rem;
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+    --fs-300: 1rem;
+    --fs-200: 0.875rem;
+
+    /* font-styles */
+    --header-font: "Work Sans", sans-serif;
+    --daily-report-font:;
+    --hourly-report-font:;
+
+
+
+
+}
+
+/* CUSTOM PROPERTIES*/
+
+/* SINGLE RESPONSIBILITY CLASS */
+.uppercase{
+    text-transform: uppercase;
+}
+.contrast-color {
+    color: hsl(var(--background-color))
+}
+.small-words {
+    font-size: var(--fs-200);
+}
+
+/* SINGLE RESPONSIBILITY CLASS */
+
+/* RESETTING */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+
+
+    /* * means ALL DESCENDANTS since it is by itself this means all the children of the entire UI*/
+
+}
+
+
+body {
+    margin:0;
+    padding: 0;
+    /* adjust with dividing by percentages */
+    background-color: hsl(var(--background-color)/ .7);
+    color: hsl(var(--icon-color)) ;
+    font-family: var(--header-font);
+}
+table {
+    border-spacing: 0px; 
+    /* get rid of any weird table spacing */
+}
+
+/* RESETTING */
+
+
+.blurred {
+    filter: blur(3px);
+    overflow: hidden;
+}
+
+.header {
+    display: flex ;
+    font-size: var(--fs-700);
+    justify-content: space-evenly;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+.current-weather{
+    width: 45%;
+    display: flex;
+    justify-content: space-evenly;
+    
+    position: relative;
+}
+
+.current-weather::after {
+    content:"";
+    position: absolute;
+    right: 0;
+    z-index: 2; 
+    height: 80%;
+    border-right:4px solid hsl(var(--icon-color)/.6);
+    display: flex;
+    align-self: center;
+
+}
+.right-icons{
+    width: 2.2rem;
+}
+
+.current-weather-icon {
+    aspect-ratio: 1/1;
+    width: 7.7rem;
+}
+
+.current-analytics {
+    width: 50%;
+    /* border: 2px solid white; */
+    display:grid;
+
+    grid-template-columns: repeat(2,auto);
+}
+.current-analytics > * {
+    
+    font-size: var(--fs-300);
+    text-align: center;
+}
+
+.daily-report {
+    background-color: hsl(var(--daily-report-color)/.5);
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 5px;
+    justify-items: space-evenly;
+    min-height: 15rem;
+    align-items: center;
+    box-shadow: 0 0 10px 0 hsl(var(--background-color)/ .7);
+    margin-bottom: 3rem;
+}
+.daily-report * {
+    text-align: center;
+}
+.card{
+    display: grid;
+    grid-template-columns: subgrid; /* makes the icons line up nice*/
+    justify-items: center;
+    height: 13rem;
+    border: 3px solid white;
+    background-color: hsl(var(--card-color));
+    width: 95%; 
+    border-radius: 9.1%;
+    box-shadow: 0 3px 7px 0 black;
+    font-weight: 600;
+}
+.card img {
+     aspect-ratio: 1/1; /*helps make subgrid actually work if images are all different height*/
+    align-self: center;
+}
+
+.entire-report-section {
+    width: 100%;
+    
+
+    
+}
+.entire-report-section > * {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.entire-report-section > * > * {
+    text-align: center;
+}
+
+.hour-report-row {
+    background-color: hsl(var(--hourly-primary-color));
+    color: white;
+    padding: .5rem .5rem;
+}
+/* every second child will have a different background color */
+.hour-report-row:nth-child(2n) {
+    background-color: hsl(var(--hourly-other-color)/.2);
+    color: hsl(var(--icon-color));
+    
+}
+
+@media (max-width:860px){
+    .header {
+        flex-direction: column;
+    }
+    .current-weather::after {
+        border-right: none;
+    }
+    .daily-report {
+        display: flex;
+        flex-direction: column;
+        background: none;
+        box-shadow: none;
+        
+        
+    
+    }
+
+    .daily-report > * {
+        width: 60%;
+        max-width: 309px;
+        height: 19rem;
+        margin: 1rem 0px;
+    }
+    
+
+}

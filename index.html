@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Content Delivery Network (CDN) links to provide me with my icons and fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header uppercase">
+      <div class="current-weather">
+        <img data-current-icon
+          class="current-weather-icon"
+          src="icons/cloud.svg"
+          alt="a cloud icon"
+        />
+        <!-- if you custom symbols use &symbol-name -->
+        <h1><span data-current-temp>31</span><span>&deg;</span></h1>
+      </div>
+
+      <div class="current-analytics">
+        <div  class="curve">
+          <p>wind</p>
+          <p><span data-head-wind></span><span style="font-size: small;">mph</span></p>
+          <img class='right-icons' src="icons/wind.svg" alt="wind icon">
+        </div>
+
+        <div class="curve">
+          <p>precip</p>
+          <p><span data-head-rain></span><span style="font-size: small;">in</span></p>
+          <img class="right-icons" src="icons/droplet.svg" alt="droplet icon">
+        </div>
+      </div>
+    </header>
+
+    <section data-daily-report class="daily-report uppercase">
+      <div class="card">
+        <img data-current-icon />
+        <p>Sunday</p>
+        <p><span>&deg;</span></p>
+      </div>
+      <div class="card">
+        <img />
+        <p>Monday</p>
+        <p><span>&deg;</span></p>
+      </div>
+      <div class="card">
+        <img />
+        <p>Tuesday</p>
+        <p><span>&deg;</span></p>
+      </div>
+      <div class="card">
+        <img />
+        <p>Wednesday</p>
+        <p><span>&deg;</span></p>
+      </div>
+      <div class="card">
+        <img />
+        <p>Thursday</p>
+        <p><span>&deg;</span></p>
+      </div>
+      <div class="card">
+        <img />
+        <p>Friday</p>
+        <p><span>&deg;</span></p>
+      </div>
+      <div class="card">
+        <img />
+        <p>Saturday</p>
+        <p><span>&deg;</span></p>
+      </div>
+    </section>
+
+    <table style="width: 100%;">
+      <tbody id="table-section" class="entire-report-section uppercase">
+        <tr class="hour-report-row">
+          <td>
+            <p>Sunday</p>
+            <p></p>
+          </td>
+          <td>
+            <img data-icon src="icons/lightning.svg" alt="cloud icon" style="width: 3rem;" />
+          </td>
+          <td>
+            <p>Temp</p>
+            <p></p>
+          </td>
+          <td>            
+            <p>Fl temp</p>
+            <p></p>
+          </td>
+
+          <td>
+            <p>wind</p>
+            <p></p>
+          </td>
+
+          <td>            
+            <p>precip</p>
+            <p></p>
+          </td>
+        </tr>
+
+        <tr class="hour-report-row">
+          <td>
+            <p>Sunday</p>
+            <p></p>
+          </td>
+          <td>
+            <img src="icons/lightning.svg" alt="cloud icon" style="width: 3rem;" />
+          </td>
+          <td>
+            <p>Temp</p>
+            <p></p>
+          </td>
+          <td>            
+            <p>Fl temp</p>
+            <p></p>
+          </td>
+
+          <td>
+            <p>wind</p>
+            <p></p>
+          </td>
+
+          <td>            
+            <p>precip</p>
+            <p></p>
+          </td>
+        </tr>
+
+        <tr class="hour-report-row">
+          <td>
+            <p>Sunday</p>
+            <p></p>
+          </td>
+          <td>
+            <img src="icons/lightning.svg" alt="cloud icon" style="width: 3rem;" />
+          </td>
+          <td>
+            <p>Temp</p>
+            <p></p>
+          </td>
+          <td>            
+            <p>Fl temp</p>
+            <p></p>
+          </td>
+
+          <td>
+            <p>wind</p>
+            <p></p>
+          </td>
+
+          <td>            
+            <p>precip</p>
+            <p></p>
+          </td>
+        </tr>
+
+        <tr class="hour-report-row">
+          <td>
+            <p>Sunday</p>
+            <p></p>
+          </td>
+          <td>
+            <img src="icons/lightning.svg" alt="cloud icon" style="width: 3rem;" />
+          </td>
+          <td>
+            <p>Temp</p>
+            <p></p>
+          </td>
+          <td>            
+            <p>Fl temp</p>
+            <p></p>
+          </td>
+
+          <td>
+            <p>wind</p>
+            <p></p>
+          </td>
+
+          <td>            
+            <p>precip</p>
+            <p></p>
+          </td>
+        </tr>
+      </tbody>     
+    </table>
+
+
+
+
+    <!-- Template cards -->
+    <!-- Anywhere where there was text that needs to be replaced remove and add data attributes -->
+    <template id="card-template">
+      <div class="card">
+        <img data-template-daily-icon style="width: 50%"/>
+        <p class="contrast-color" data-template-day></p>
+        <div style="font-size: .8rem;"><p>
+          High:
+          <span data-template-high></span>
+          <span>&deg;</span>
+        </p>
+        <p>
+          Low:
+          <span data-template-low></span>
+          <span>&deg;</span>
+        </p></div>
+        
+      </div>
+
+    </template>
+
+    <template id="hourly-template">
+      <tr class="hour-report-row">
+        <td>
+          <p data-template-hourly-day></p>
+          <p data-template-hour></p>
+        </td>
+        <td>
+          <img data-template-hourly-icon style="width: 2rem;"/>
+        </td>
+        <td>
+          <p>Temp</p>
+          <p><span data-template-hourly-temp></span><span>&deg;</span></p>
+        </td>
+        <td>            
+          <p>Fl temp</p>
+          <p><span data-template-hourly-fl></span><span>&deg;</span></p>
+        </td>
+
+        <td>
+          <p>wind</p>
+          <p><span data-template-hourly-wind></span><span class="small-words">mph</span></p>
+        </td>
+
+        <td>            
+          <p>precip</p>
+          <p><span data-template-hourly-precip></span><span class="small-words">in</span></p>
+        </td>
+      </tr>
+    </template>
+
+
+    
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
