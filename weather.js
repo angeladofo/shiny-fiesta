@@ -124,16 +124,16 @@ export function getWeather(lat = 10, lon = 10, timezone) {
 //function for generating icon based on code
 function getIcon(code) {
   if(code === 0) {
-    return (generateImage = "sun.svg")
+    return (generateImage = "icons/sun.svg")
   }
   if (code < 4 && code !== 0) {
-    return (generateImage = "cloud.svg");
+    return (generateImage = "icons/cloud.svg");
   } else if ((code > 50 && code < 68) || (code > 79 && code < 83)) {
-    return (generateImage = "rain.svg");
+    return (generateImage = "icons/rain.svg");
   } else if ((code > 70 && code < 78) || code === 85 || code === 86) {
-    return (generateImage = "snow.svg");
+    return (generateImage = "icons/snow.svg");
   } else if (code === 95 || code === 96 || code === 99) {
-    return (generateImage = "lightning.svg");
+    return (generateImage = "icons/lightning.svg");
   }
 }
 
